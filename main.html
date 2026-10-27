@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Zero Waste Food Network connects surplus food donors with NGOs and communities in need.">
+
+    <title>Zero Waste Food Network</title>
+
+    <!-- Favicon -->
+    <link rel="icon"
+          type="image/png"
+          href="brand_logo.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet"
+          href="main.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar" id="navbar">
+
+    <div class="nav-container">
+
+
+        <!-- LOGO -->
+
+        <a href="index.html" class="logo">
+
+            <img src="brand_logo.png"
+                 alt="Zero Waste Food Network Logo">
+
+            <span>
+                Zero Waste Food Network
+            </span>
+
+        </a>
+    </div>
+</header>   
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+
+<main>
+
+<section class="hero" id="home">
+
+
+    <!-- Decorative circles -->
+
+    <div class="hero-circle hero-circle-one"></div>
+
+    <div class="hero-circle hero-circle-two"></div>
+
+
+    <div class="hero-content">
+
+
+        <!-- Badge -->
+
+        <div class="hero-badge">
+
+            <span></span>
+
+            BUILDING A ZERO-WASTE INDIA
+
+        </div>
+
+
+        <!-- Main heading -->
+
+        <h1>
+
+            ZERO WASTE
+            <br>
+
+            <span>FOOD NETWORK</span>
+
+        </h1>
+
+
+        <!-- Tagline -->
+
+        <h2 class="hero-tagline">
+
+            Connecting surplus food with those who need it.
+
+        </h2>
+
+
+        <!-- Description -->
+
+        <p class="hero-description">
+
+            A smarter food redistribution network connecting
+            donors with NGOs to reduce food waste and create
+            a meaningful impact across communities.
+
+        </p>
+
+
+        <!-- Buttons -->
+
+        <div class="hero-buttons">
+
+
+            <!-- MAIN GET STARTED -->
+
+            <a href="index.html"
+               class="primary-button">
+
+                <span>
+                    Get Started
+                </span>
+
+                <span class="button-arrow">
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </span>
+
+            </a>
+
+
+            
+
+        </div>
+
+
+        <!-- Trust text -->
+
+        <div class="hero-trust">
+
+            <i class="fa-solid fa-shield-heart"></i>
+
+            <span>
+                Reducing waste. Connecting communities.
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         IMPACT STATS
+    ================================================== -->
+
+    <div class="impact-stats">
+
+
+        <!-- STAT 1 -->
+
+        <div class="impact-item">
+
+            <span class="impact-number">
+                01
+            </span>
+
+            <h3>
+                Reduce Food Waste
+            </h3>
+
+            <p>
+                Save surplus food
+            </p>
+
+        </div>
+
+
+        <!-- STAT 2 -->
+
+        <div class="impact-item">
+
+            <span class="impact-number">
+                02
+            </span>
+
+            <h3>
+                Connect Donors
+            </h3>
+
+            <p>
+                Hotels &amp; restaurants
+            </p>
+
+        </div>
+
+
+        <!-- STAT 3 -->
+
+        <div class="impact-item">
+
+            <span class="impact-number">
+                03
+            </span>
+
+            <h3>
+                Feed Communities
+            </h3>
+
+            <p>
+                NGOs &amp; organizations
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+
+
+
+<!-- =====================================================
+     MOBILE MENU SCRIPT
+===================================================== -->
+
+<script>
+
+    const menuToggle =
+        document.getElementById("menuToggle");
+
+    const mobileMenu =
+        document.getElementById("mobileMenu");
+
+    const navbar =
+        document.getElementById("navbar");
+
+
+    menuToggle.addEventListener("click", function () {
+
+        mobileMenu.classList.toggle("active");
+
+        const icon =
+            menuToggle.querySelector("i");
+
+        if (mobileMenu.classList.contains("active")) {
+
+            icon.classList.remove("fa-bars");
+
+            icon.classList.add("fa-xmark");
+
+        } else {
+
+            icon.classList.remove("fa-xmark");
+
+            icon.classList.add("fa-bars");
+
+        }
+
+    });
+
+
+    /* Close mobile menu after clicking a link */
+
+    document.querySelectorAll(".mobile-menu a")
+        .forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                mobileMenu.classList.remove("active");
+
+                const icon =
+                    menuToggle.querySelector("i");
+
+                icon.classList.remove("fa-xmark");
+
+                icon.classList.add("fa-bars");
+
+            });
+
+        });
+
+
+    /* Navbar scroll effect */
+
+    window.addEventListener("scroll", function () {
+
+        if (window.scrollY > 40) {
+
+            navbar.classList.add("scrolled");
+
+        } else {
+
+            navbar.classList.remove("scrolled");
+
+        }
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

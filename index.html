@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Zero Waste Food Network | Login</title>
+    <!-- Website Logo / Favicon -->
+    <link rel="icon" type="image/png" href="brand_logo.png">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background decorations -->
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+    <div class="background-circle circle-one"></div>
+    <div class="background-circle circle-two"></div>
+
+
+    <!-- Main Container -->
+    <main class="login-page">
+
+        <!-- Logo / Brand -->
+        <div class="brand">
+            <div class="brand-icon">
+                <img src="brand_logo.png" alt="brand logo">
+            </div>
+
+            <span>Zero Waste Food Network</span>
+        </div>
+
+
+        <!-- Heading -->
+        <div class="page-heading">
+            <p class="small-heading">WELCOME BACK</p>
+
+            <h1>Choose your <span>login</span></h1>
+
+            <p class="heading-description">
+                Select your account type and continue to your dashboard.
+            </p>
+        </div>
+
+
+        <!-- Login Cards -->
+        <section class="login-container">
+
+
+            <!-- ================= DONOR LOGIN ================= -->
+
+            <div class="login-card donor-card">
+
+                <div class="card-top">
+
+                    <div class="role-icon donor-icon">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+
+                    <div>
+                        <p class="role-label">ACCOUNT TYPE</p>
+                        <h2>Donor Login</h2>
+                    </div>
+
+                </div>
+
+
+                <p class="card-description">
+                    Login to manage your donations and connect with NGOs.
+                </p>
+
+
+                <form id="donorForm">
+
+                    <!-- Username -->
+                    <div class="input-group">
+
+                        <label for="donorUsername">
+                            Username
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-regular fa-user input-icon"></i>
+
+                            <input type="text" id="donorUsername" name="username" placeholder="Enter username" required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="input-group">
+
+                        <div class="label-row">
+
+                            <label for="donorPassword">
+                                Password
+                            </label>
+
+                        </div>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-lock input-icon"></i>
+
+                            <input type="password" id="donorPassword" name="password" placeholder="Enter password"
+                                required>
+
+                            <button type="button" class="password-toggle"
+                                onclick="togglePassword('donorPassword', this)" aria-label="Show password">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Login Button -->
+                    <button type="submit" class="login-button">
+                        <span>Login</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                    <!-- Login Message -->
+                    <p id="donorMessage" role="status"></p>
+
+
+                    <!-- Forgot Password -->
+                    <button type="button" class="forgot-button" onclick="openForgotPassword('Donor')">
+                        Forgot Password?
+                    </button>
+
+                </form>
+
+            </div>
+
+
+
+            <!-- ================= DIVIDER ================= -->
+
+            <div class="or-divider">
+
+                <span>OR</span>
+
+            </div>
+
+
+
+            <!-- ================= NGO LOGIN ================= -->
+
+            <div class="login-card ngo-card">
+
+                <div class="card-top">
+
+                    <div class="role-icon ngo-icon">
+                        <i class="fa-solid fa-building-ngo"></i>
+                    </div>
+
+                    <div>
+                        <p class="role-label">ACCOUNT TYPE</p>
+                        <h2>Receiver / NGO</h2>
+                    </div>
+
+                </div>
+
+
+                <p class="card-description">
+                    Login to receive donations and manage your NGO activities.
+                </p>
+
+
+                <form id="ngoForm">
+
+                    <!-- Username -->
+                    <div class="input-group">
+
+                        <label for="ngoUsername">
+                            Username
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-regular fa-user input-icon"></i>
+
+                            <input type="text" id="ngoUsername" name="username" placeholder="Enter username" required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="input-group">
+
+                        <label for="ngoPassword">
+                            Password
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-lock input-icon"></i>
+
+                            <input type="password" id="ngoPassword" name="password" placeholder="Enter password"
+                                required>
+
+                            <button type="button" class="password-toggle" onclick="togglePassword('ngoPassword', this)"
+                                aria-label="Show password">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Login Button -->
+                    <button type="submit" class="login-button">
+                        <span>Login</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                    <!-- Login Message -->
+                    <p id="ngoMessage" role="status"></p>
+
+                    <!-- Forgot Password -->
+                    <button type="button" class="forgot-button" onclick="openForgotPassword('Receiver / NGO')">
+                        Forgot Password?
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= FORGOT PASSWORD MODAL ================= -->
+
+    <div class="modal-overlay" id="forgotModal">
+
+        <div class="forgot-modal">
+
+            <button class="close-modal" onclick="closeForgotPassword()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+
+            <div class="modal-icon">
+                <i class="fa-solid fa-key"></i>
+            </div>
+
+
+            <p class="modal-small-text">
+                RESET PASSWORD
+            </p>
+
+            <h2>Forgot Password?</h2>
+
+            <p class="modal-description">
+                Enter your registered email or username and we'll help you
+                reset your password.
+            </p>
+
+
+            <form id="forgotForm">
+
+                <div class="input-box">
+
+                    <i class="fa-regular fa-envelope input-icon"></i>
+
+                    <input type="text" id="resetInput" placeholder="Email or username" required>
+
+                </div>
+
+
+                <button type="submit" class="reset-button">
+                    Send Reset Link
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div style="text-align: center; margin: 20px;">
+        <p>Don't have an account?</p>
+        <a href="register.html">Register Here</a>
+    </div>
+    <script src="app.js"></script>
+
+</body>
+
+</html>

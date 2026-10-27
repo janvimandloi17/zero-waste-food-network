@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Available Food | Zero Waste Food Network</title>
+
+    <link rel="icon" type="image/png" href="brand_logo.png">
+
+    <link rel="stylesheet" href="receiver.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Background decoration -->
+    <div class="background-circle circle-one"></div>
+    <div class="background-circle circle-two"></div>
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <a href="index.html" class="brand">
+
+            <img src="brand_logo.png" alt="Zero Waste Food Network">
+
+            <div>
+                <span class="brand-name">Zero Waste</span>
+                <span class="brand-subtitle">Food Network</span>
+            </div>
+
+        </a>
+
+
+        <div class="nav-actions">
+            <a href="main.html" class="back-link">
+                ← Home
+            </a>
+
+            <button type="button" onclick="logout()" class="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </div>
+
+
+
+    </nav>
+
+
+    <!-- Main content -->
+    <main class="receiver-container">
+
+        <section class="page-heading">
+
+            <div>
+                <p class="eyebrow">RECEIVER NETWORK</p>
+
+                <h1>
+                    Available <span>Food</span>
+                </h1>
+
+                <p class="description">
+                    Discover surplus food available from donors
+                    and help give it a second purpose.
+                </p>
+            </div>
+
+            <div class="availability-status">
+                <span class="status-dot"></span>
+                <span id="statusText">Checking availability...</span>
+            </div>
+
+        </section>
+
+
+        <!-- Food listings -->
+        <section class="listings-section">
+
+            <div class="section-header">
+
+                <div>
+                    <p class="section-label">LIVE LISTINGS</p>
+                    <h2>Food available near you</h2>
+                </div>
+
+                <button id="refreshButton" class="refresh-button">
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+            <!-- Search and Filter Food -->
+            <div class="food-filters">
+
+                <input type="text" id="searchFood" placeholder="Search food by name or type...">
+
+                <select id="filterFoodType">
+                    <option value="all">All Food Types</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="non-vegetarian">Non-Vegetarian</option>
+                </select>
+
+            </div>
+            <div id="listingsContainer" class="listings-grid">
+
+                <!-- Loading state -->
+                <div class="loading-state" id="loadingState">
+
+                    <div class="loader"></div>
+
+                    <p>Checking for available food...</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- My Food Requests -->
+        <section class="my-requests-section">
+            <h2>My Food Requests</h2>
+            <p>Track the status of the food you have requested.</p>
+
+            <div id="myRequestsContainer">
+                <p>Loading your requests...</p>
+            </div>
+        </section>
+
+
+
+    </main>
+
+
+    <!-- Food available popup -->
+    <div id="notificationOverlay" class="notification-overlay">
+
+        <div class="notification-popup">
+
+            <button class="popup-close" id="popupClose" aria-label="Close">
+                ×
+            </button>
+
+            <div class="popup-icon">
+                🍲
+            </div>
+
+            <p class="popup-label">ZERO WASTE ALERT</p>
+
+            <h2 id="popupTitle">
+                Food Available!
+            </h2>
+
+            <p id="popupMessage">
+                Fresh surplus food has been added to the network.
+            </p>
+
+            <button id="viewListingsButton" class="popup-button">
+                View Listings
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Request confirmation popup -->
+    <div id="requestOverlay" class="notification-overlay">
+
+        <div class="request-popup">
+
+            <button class="popup-close" id="requestClose" aria-label="Close">
+                ×
+            </button>
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <p class="popup-label">REQUEST SUBMITTED</p>
+
+            <h2>Food request received</h2>
+
+            <p>
+                Your request has been submitted successfully.
+                The donor can now respond to your request.
+            </p>
+
+            <button id="requestDone" class="popup-button">
+                Done
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="receiver.js"></script>
+    <script src="auth.js"></script>
+
+    <script>
+        checkLogin("receiver");
+    </script>
+
+</body>
+
+</html>

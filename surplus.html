@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>New Surplus Listing | Zero Waste Food Network</title>
+
+    <link rel="icon" type="image/png" href="brand_logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Playfair+Display:wght@500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="surplus.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="bg-circle circle-one"></div>
+    <div class="bg-circle circle-two"></div>
+    <div class="bg-glow"></div>
+
+    
+<main class="page">
+
+    <section class="listing-card">
+
+       
+<!-- Donor Welcome Message and Logout -->
+
+<div class="logout-container">
+    <span id="welcomeUser" class="welcome-user"></span>
+
+    <button
+        type="button"
+        onclick="window.location.href='donor-dashboard.html'">
+        My Dashboard
+    </button>
+
+    <button type="button" onclick="logout()" class="logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </button>
+</div>
+
+
+
+
+
+        <div class="listing-header">
+            <p class="eyebrow">NEW SURPLUS LISTING</p>
+            <h1>Lunch buffet surplus</h1>
+        </div>
+
+
+
+            <form class="surplus-form" id="surplusForm">
+
+                <!-- Quantity -->
+                <div class="form-group">
+                    <label for="quantity">QUANTITY · SERVINGS</label>
+
+                    <div class="input-box">
+                        <input type="text" id="quantity" name="quantity" placeholder="e.g. 18 kg · approx. 60 servings"
+                            required>
+                    </div>
+                </div>
+
+                <!-- Food type and preparation time -->
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="food-type">FOOD TYPE</label>
+
+                        <div class="input-box">
+                            <select id="food-type" name="food_type" required>
+                                <option value="">Select food type</option>
+                                <option value="Vegetarian">Vegetarian</option>
+                                <option value="Non-Vegetarian">Non-Vegetarian</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prepared">PREPARED AT</label>
+
+                        <div class="input-box">
+                            <input type="datetime-local" id="prepared" name="prepared_at" required>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Pickup address -->
+                <div class="form-group">
+                    <label for="pickup-address">
+                        PICKUP ADDRESS · CONTACT
+                    </label>
+
+                    <div class="input-box">
+                        <input type="text" id="pickup-address" name="pickup_address"
+                            placeholder="Restaurant address and contact number" required>
+                    </div>
+                </div>
+
+                <!-- Pickup window and safe consumption time -->
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="pickup-window">PICKUP WINDOW</label>
+
+                        <div class="input-box">
+                            <input type="text" id="pickup-window" name="pickup_window" placeholder="e.g. 6 PM - 8 PM"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="safe-until">SAFE UNTIL</label>
+
+                        <div class="input-box safe-input">
+                            <input type="datetime-local" id="safe-until" name="safe_until" required>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Status message -->
+                <p id="formMessage" role="status" aria-live="polite">
+                </p>
+
+                <!-- Submit button -->
+                <button type="submit" class="publish-btn" id="publishButton">
+
+                    Publish Listing
+
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script>
+        const form = document.getElementById("surplusForm");
+        const button = document.getElementById("publishButton");
+        const message = document.getElementById("formMessage");
+
+        const API_URL = "http://localhost:3000/listings";
+
+        form.addEventListener("submit", async function (event) {
+
+            event.preventDefault();
+
+            message.textContent = "";
+            message.style.color = "";
+
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            button.disabled = true;
+            button.textContent = "Publishing...";
+
+            // Collect form data.
+            // These property names match your existing server.js.
+
+           // Get the logged-in donor
+const storedUser = sessionStorage.getItem("user");
+
+if (!storedUser) {
+    alert("Please log in again.");
+    window.location.href = "index.html";
+    return;
+}
+
+
+const user = JSON.parse(storedUser);
+
+if (user.role !== "donor" || !user.id) {
+    alert("Only logged-in donors can publish food.");
+    button.disabled = false;
+    button.textContent = "Publish Listing";
+    return;
+}
+
+
+
+// Collect form data, including the donor ID
+const listingData = {
+    donor_id: user.id,
+
+    quantity: document.getElementById("quantity").value.trim(),
+
+    food_type: document.getElementById("food-type").value,
+
+    prepared_at: document.getElementById("prepared").value,
+
+    pickup_address: document.getElementById("pickup-address").value.trim(),
+
+    pickup_window: document.getElementById("pickup-window").value.trim(),
+
+    safe_until: document.getElementById("safe-until").value
+};
+            try {
+
+                // Send listing to Express backend.
+
+                const response = await fetch(API_URL, {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify(listingData)
+                });
+
+                // Read the server response.
+
+                const result = await response.json();
+
+                // Handle backend or database errors.
+
+                if (!response.ok || !result.success) {
+                    throw new Error(
+                        result.message || "Failed to publish food listing."
+                    );
+                }
+
+                // Show success only after the server confirms insertion.
+
+                message.style.color = "green";
+
+                message.textContent =
+                    "Food listing published successfully! Listing ID: " +
+                    result.listing_id;
+
+                // Clear the form after successful insertion.
+
+                form.reset();
+
+            } catch (error) {
+
+                console.error("Food listing error:", error);
+
+                message.style.color = "red";
+
+                if (error instanceof TypeError) {
+
+                    message.textContent =
+                        "Cannot connect to the server. Make sure Node.js " +
+                        "and the Express backend are running on port 3000.";
+
+                } else {
+
+                    message.textContent = error.message;
+
+                }
+
+            } finally {
+
+                button.disabled = false;
+                button.textContent = "Publish Listing";
+
+            }
+
+        });
+    
+</script>
+
+
+<script src="auth.js"></script>
+
+<script>
+    if (checkLogin("donor")) {
+        const storedUser = JSON.parse(sessionStorage.getItem("user"));
+
+        if (storedUser) {
+            document.getElementById("welcomeUser").textContent =
+                "Welcome, " + storedUser.username + "!";
+        }
+    }
+</script>
+
+
+
+</body>
+</html>
