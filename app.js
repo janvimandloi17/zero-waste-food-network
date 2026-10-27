@@ -87,7 +87,8 @@ function handleLogin(formId, usernameId, passwordId, role, messageId) {
         message.textContent = "Checking login details...";
 
         try {
-            const response = await fetch("http://localhost:3000/login", {
+            const response = await fetch("/login", {
+
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
