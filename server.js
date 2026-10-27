@@ -10,6 +10,7 @@
 // ============================================
 require("dotenv").config();
 const express = require("express");
+const path = require("path");
 const mysql = require("mysql2");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
@@ -82,13 +83,13 @@ db.connect((err) => {
 
 
 // ============================================
-// 6. HOME / SERVER TEST ROUTE
+// 6. SERVE FRONTEND
 // ============================================
 
+app.use(express.static(__dirname));
+
 app.get("/", (req, res) => {
-
-    res.send("🌱 Zero Waste Food Network Server is Running!");
-
+    res.sendFile(path.join(__dirname, "main.html"));
 });
 
 // ============================================
