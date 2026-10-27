@@ -86,11 +86,14 @@ db.connect((err) => {
 // 6. SERVE FRONTEND
 // ============================================
 
+/* HOMEPAGE */
+app.get("/", (req, res) => {
+res.sendFile(path.join(__dirname, "main.html"));
+});
+
+/* SERVE STATIC FILES */
 app.use(express.static(__dirname));
 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "main.html"));
-});
 
 // ============================================
 // USER REGISTRATION API
