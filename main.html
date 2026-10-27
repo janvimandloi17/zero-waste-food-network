@@ -54,7 +54,7 @@
 
         <!-- LOGO -->
 
-        <a href="index.html" class="logo">
+        <a href="/" class="logo">
 
             <img src="brand_logo.png"
                  alt="Zero Waste Food Network Logo">
@@ -136,7 +136,7 @@
 
             <!-- MAIN GET STARTED -->
 
-            <a href="index.html"
+            <a href="/"
                class="primary-button">
 
                 <span>
@@ -262,7 +262,7 @@
     const navbar =
         document.getElementById("navbar");
 
-
+    if (menuToggle && mobileMenu) {
     menuToggle.addEventListener("click", function () {
 
         mobileMenu.classList.toggle("active");
@@ -287,8 +287,10 @@
     });
 
 
-    /* Close mobile menu after clicking a link */
+    
+/* Close mobile menu after clicking a link */
 
+if (menuToggle && mobileMenu) {
     document.querySelectorAll(".mobile-menu a")
         .forEach(function (link) {
 
@@ -296,19 +298,24 @@
 
                 mobileMenu.classList.remove("active");
 
-                const icon =
-                    menuToggle.querySelector("i");
+                const icon = menuToggle.querySelector("i");
 
-                icon.classList.remove("fa-xmark");
-
-                icon.classList.add("fa-bars");
+                if (icon) {
+                    icon.classList.remove("fa-xmark");
+                    icon.classList.add("fa-bars");
+                }
 
             });
 
         });
+}
+
+/* Navbar scroll effect */
 
 
-    /* Navbar scroll effect */
+
+
+    
 
     window.addEventListener("scroll", function () {
 
