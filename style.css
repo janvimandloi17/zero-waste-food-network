@@ -1068,3 +1068,60 @@ body {
         padding: 30px 22px;
     }
 }
+/* =========================
+REGISTRATION SECTION
+========================= */
+
+.register-section {
+text-align: center;
+margin: 10px auto 30px;
+padding: 20px;
+font-family: 'Poppins', sans-serif;
+}
+
+.register-section p {
+display: inline;
+color: #555;
+font-size: 14px;
+font-weight: 400;
+margin: 0;
+}
+
+.register-link {
+display: inline-block;
+margin-left: 5px;
+color: #16a085;
+font-size: 14px;
+font-weight: 600;
+text-decoration: none;
+transition: color 0.3s ease;
+}
+
+.register-link i {
+margin-left: 4px;
+font-size: 12px;
+transition: transform 0.3s ease;
+}
+
+.register-link:hover {
+color: #117a65;
+text-decoration: underline;
+}
+
+.register-link:hover i {
+transform: translateX(4px);
+}
+
+@media (max-width: 480px) {
+.register-section {
+padding: 15px 10px;
+}
+
+
+.register-section p,
+.register-link {
+    font-size: 13px;
+}
+
+
+}

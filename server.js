@@ -54,32 +54,25 @@ app.use(express.urlencoded({ extended: true }));
 // 4. MYSQL DATABASE CONNECTION
 // ============================================
 
-const db = mysql.createConnection({
+
+
+const db = mysql.createPool({
     host: process.env.DB_HOST || "localhost",
     user: process.env.DB_USER || "root",
     password: process.env.DB_PASSWORD || "",
     database: process.env.DB_NAME || "zero_waste_food_network",
-    port: process.env.DB_PORT || 3306
+    port: Number(process.env.DB_PORT || 3306),
+    waitForConnections: true,
+    connectionLimit: 5,
+    queueLimit: 0
 });
+
 
 
 // ============================================
 // 5. CONNECT TO MYSQL
 // ============================================
 
-db.connect((err) => {
-
-    if (err) {
-
-        console.error("❌ MySQL connection failed:");
-        console.error(err.message);
-
-        return;
-    }
-
-    console.log("✅ MySQL connected successfully!");
-
-});
 
 
 // ============================================
